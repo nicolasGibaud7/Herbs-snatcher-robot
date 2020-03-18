@@ -1,6 +1,6 @@
 from centerVideo import *
-from sensor import *
-frm time import *
+from serial import *
+from time import *
 
 if __name__ == "__main__":
     while True:
@@ -28,9 +28,9 @@ if __name__ == "__main__":
             pwm_orders[4] = "300"
 
         with Serial(
-            port="/dev/ttyACM0", baudrate=115200, timeout=1, writeTimeout=1
+            port="/dev/ttyUSB0", baudrate=115200, timeout=1, writeTimeout=1
         ) as port_serie:
-            for num_pwm, angle in pwm_orders:
+            for num_pwm, angle in pwm_orders.items():
                 message = bytearray(
                     [str(num_pwm), ";", angle[0], angle[1], angle[2], "a"]
                 )
