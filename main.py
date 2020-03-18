@@ -32,7 +32,7 @@ if __name__ == "__main__":
         ) as port_serie:
             for num_pwm, angle in pwm_orders.items():
                 message = bytearray(
-                    [str(num_pwm), ";", angle[0], angle[1], angle[2], "a"]
+                    [ord(str(num_pwm)), ord(";"), ord(angle[0]), ord(angle[1]), ord(angle[2]), ord("a")]
                 )
                 port_serie.write(message)
                 time.sleep(0.001)
