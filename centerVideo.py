@@ -34,13 +34,9 @@ def get_average_position(positions):
 def get_distance(cX1, cY1, cX2, cY2):
     return math.sqrt((cX2-cX1)**2 + (cY2-cY1)**2)
 
-def get_target_position(verbose, display, iteration = 52):
-    MIN_AREA = 400
+def init_camera():
+    
 
-    iteration_cpt = 0
-    # Range for upper range
-    lower_green = np.array([47, 10, 10])
-    upper_green = np.array([65, 255, 255])
 
     cam = PiCamera()
     cam.resolution = (640, 480)
@@ -51,17 +47,22 @@ def get_target_position(verbose, display, iteration = 52):
     cam.awb_gains = (1.1, 1.6)
     cam.rotation = 180
     rawCapture = PiRGBArray(cam, size=(640, 480))
-    if verbose:
-        print("Camera is starting...")
+    print("Camera is starting...")
 
     time.sleep(2)
     cam.exposure_mode = "off"
     cam.shutter_speed = 12000
+    
+    return (cam, rawCapture)
+    
 
-    if verbose:
-        print("Image analysis...")
+def get_target_position(cam, rawCapture, verbose, display, iteration = 52): 
+    MIN_AREA = 400
 
-
+    iteration_cpt = 0  
+        # Range for upper range
+    lower_green = np.array([47, 10, 10])
+    upper_green = np.array([65, 255, 255]) 
     target_coord_list = []
     for frame in cam.capture_continuous(
         rawCapture, format="bgr", use_video_port=True
