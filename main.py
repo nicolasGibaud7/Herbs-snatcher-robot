@@ -3,8 +3,9 @@ from serial import *
 from time import *
 
 if __name__ == "__main__":
+    cam, rawCapture = init_camera()
     while True:
-        x, y = get_target_position(True, True, 56)
+        x, y = get_target_position(cam, rawCapture, True, True, 56)
         pwm_orders = {}
         if x < 640 / 2 and y < 480 / 2:
             pwm_orders[1] = "300"
@@ -35,4 +36,3 @@ if __name__ == "__main__":
                     [ord(str(num_pwm)), ord(";"), ord(angle[0]), ord(angle[1]), ord(angle[2]), ord("a")]
                 )
                 port_serie.write(message)
-                time.sleep(0.001)
