@@ -14,13 +14,13 @@ if __name__ == "__main__":
         elif x > 640 / 2 and y < 480 / 2:
             pwm_orders[1] = "000"
             pwm_orders[2] = "300"
-            pwm_orders[3] = "000"
-            pwm_orders[4] = "300"
+            pwm_orders[3] = "300"
+            pwm_orders[4] = "000"
         elif x < 640 / 2 and y > 480 / 2:
             pwm_orders[1] = "300"
             pwm_orders[2] = "000"
-            pwm_orders[3] = "300"
-            pwm_orders[4] = "000"
+            pwm_orders[3] = "000"
+            pwm_orders[4] = "300"
         elif x > 640 / 2 and y > 480 / 2:
             pwm_orders[1] = "000"
             pwm_orders[2] = "000"
